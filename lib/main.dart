@@ -361,10 +361,14 @@ class QuestionDetailScreen extends StatelessWidget {
                 // open share
                 final result = await Share.share('''
                 المسألة رقم ${question.number}
+                ${question.mainTitle}/${question.subTitle}
+                
                 ${question.question}
                 
                 الجواب: 
                 ${question.answer}
+                
+                بجواب الشيخ: ${question.instructorName}
                 
                 للمزيد من المعلومات قم بزيارة الموقع
                 ${Uri.base}questionid/${question.number}
@@ -379,18 +383,72 @@ class QuestionDetailScreen extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(right: 16, left: 16, bottom: 16, top: 10),
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(question.question,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
 
-                    style:
-                        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text("رقم المسألة ${question.number}\n${question.mainTitle}/${question.subTitle}",
+                    style: const TextStyle(fontSize: 15)),
+
+                ],),
                 const SizedBox(height: 8),
-                Text(question.answer,
-                    style: const TextStyle(fontSize: 16)),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(question.question,
+
+                      style:
+                          const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                ),
+                SizedBox(
+                    height: 50,
+                    width: double.infinity,
+                    child: Card.outlined(
+                      elevation: 0,
+                      // squared
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondaryContainer,
+                      child: Center(
+                        child: Text("نص الجواب",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: "Zarids",
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondary)),
+                      ),
+                    )),
+                Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Card.outlined(
+                      elevation: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Text(
+                                question.answer ??
+                                    "لا يوجد نص جواب",
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+
+                                    fontSize: 16)),
+                          ),
+
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
