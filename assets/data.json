@@ -3,25 +3,33 @@
       "number": 1,
       "question": "What is Flutter?",
       "answer": "Flutter is a UI toolkit.",
-      "instructorName": "Instructor A",
-      "mainTitle": "Main Title 1",
-      "subTitle": "Sub Title 1"
+      "instructorName": "شيخ عبدالكريم",
+      "mainTitle": "احكام الحج",
+      "subTitle": "الصلاة"
     },
     {
       "number": 2,
       "question": "What is Dart?",
       "answer": "Dart is a programming language.",
-      "instructorName": "Instructor A",
-      "mainTitle": "Main Title 1",
-      "subTitle": "Sub Title 1"
+      "instructorName": "شيخ عبدالكريم",
+      "mainTitle": "احكام الحرم",
+      "subTitle": "الصلاة"
     },
     {
       "number": 3,
-      "question": "What is an API?",
-      "answer": "API stands for Application Programming Interface.",
-      "instructorName": "Instructor B",
-      "mainTitle": "Main Title 2",
-      "subTitle": "Sub Title 2"
-    }
+      "question": "ما هي طريقة الوضوء؟",
+      "answer": "الوضوء يكون بالطريقة التالي:....",
+      "instructorName": "سيد عبدالله",
+      "mainTitle": "احكام الحرم",
+      "subTitle": "الوضوء"
+    },
+  {
+    "number": 4,
+    "question": "كم عدد الاشواط في الطواف؟",
+    "answer": "عدد الأشواط هو : #",
+    "instructorName": "سيد عبدالله",
+    "mainTitle": "احكام الحرم",
+    "subTitle": "الطواف"
+  }
   ]
   

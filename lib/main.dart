@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'models.dart';
 
@@ -163,7 +164,12 @@ class _InstructorSelectionScreenState extends State<InstructorSelectionScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Select Instructor'),
+          title: const Column(
+            children: [
+               Text('المعلمين', style: TextStyle(fontSize: 16)),
+               Text("اختر المعلم", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+            ],
+          ),
           centerTitle: true,
 
         ),
@@ -203,7 +209,12 @@ class MainTitleSelectionScreen extends StatelessWidget {
 
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Select Main Title'),
+          title:  Column(
+            children: [
+              Text(instructor.name, style: const TextStyle(fontSize: 16 )),
+              const Text("اختر القسم", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+            ],
+          ),
           centerTitle: true,
 
         ),
@@ -252,7 +263,12 @@ class SubTitleSelectionScreen extends StatelessWidget {
 
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Select Sub Title'),
+          title: Column(
+            children: [
+              Text(mainTitle.title, style: const TextStyle(fontSize: 16)),
+              const Text("اختر القسم الفرعي", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+            ],
+          ),
           centerTitle: true,
 
         ),
@@ -290,7 +306,12 @@ class QuestionSelectionScreen extends StatelessWidget {
 
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Select Question'),
+          title:  Column(
+            children: [
+              Text(subTitle.title, style: const TextStyle(fontSize: 16)),
+              const Text("اختر المسألة", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+            ],
+          ),
           centerTitle: true,
         ),
         body: ListView.builder(
@@ -326,29 +347,52 @@ class QuestionDetailScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Question Details'),
+
           centerTitle: true,
 
           actions: [
-            IconButton(onPressed: (){
-              // Share the question
-              // open the link of the question
-              launchUrl(Uri.parse('${Uri.base}questionid/${question.number}'));
-            }, icon: const Icon(Icons.share))
+            Padding(
+              padding: const EdgeInsets.only(left:8.0),
+              child: IconButton(onPressed: () async {
+                // Share the question
+                // open the link of the question
+                // launchUrl(Uri.parse('${Uri.base}questionid/${question.number}'));
+
+                // open share
+                final result = await Share.share('''
+                المسألة رقم ${question.number}
+                ${question.question}
+                
+                الجواب: 
+                ${question.answer}
+                
+                للمزيد من المعلومات قم بزيارة الموقع
+                ${Uri.base}questionid/${question.number}
+                ''', subject: question.question);
+
+                if (result.status == ShareResultStatus.success) {
+                  debugPrint('Thank you for sharing my website!');
+                }
+
+              }, icon: const Icon(Icons.share)),
+            )
           ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Question: ${question.question}',
-                  style:
-                      const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 8),
-              Text('Answer: ${question.answer}',
-                  style: const TextStyle(fontSize: 16)),
-            ],
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(question.question,
+
+                    style:
+                        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 8),
+                Text(question.answer,
+                    style: const TextStyle(fontSize: 16)),
+              ],
+            ),
           ),
         ),
       ),
