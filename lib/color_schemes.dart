@@ -1,5 +1,33 @@
 import 'package:flutter/material.dart';
 
+
+const textTheme = TextTheme(
+  displayLarge: TextStyle(
+    fontFamily: "Zarids",
+    fontSize: 35,
+  ),
+  displayMedium: TextStyle(
+    fontFamily: "Zarids",
+    fontSize: 30,
+  ),
+  displaySmall: TextStyle(
+    fontFamily: "Zarids",
+    fontSize: 25,
+  ),
+  headlineMedium: TextStyle(
+    fontFamily: "Zarids",
+    fontSize: 20,
+  ),
+  headlineSmall: TextStyle(
+    fontFamily: "Zarids",
+    fontSize: 15,
+  ),
+  titleLarge: TextStyle(
+    fontFamily: "Zarids",
+    fontSize: 20,
+  ),
+);
+
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF006A6A),
