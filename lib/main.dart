@@ -27,21 +27,23 @@ class QuestionAnswerApp extends StatelessWidget {
           textTheme: textTheme,
           appBarTheme: const AppBarTheme(
               titleTextStyle: TextStyle(
-                fontFamily: "Zarids",
-                fontSize: 25,
-              )),
-          colorScheme: lightColorScheme, useMaterial3: true),
+            fontFamily: "Zarids",
+            fontSize: 25,
+          )),
+          colorScheme: lightColorScheme,
+          useMaterial3: true),
       darkTheme: ThemeData(
         textTheme: textTheme,
         appBarTheme: const AppBarTheme(
             titleTextStyle: TextStyle(
-              fontFamily: "Zarids",
-              fontSize: 25,
-            )),
+          fontFamily: "Zarids",
+          fontSize: 25,
+        )),
         colorScheme: darkColorScheme,
         useMaterial3: true,
       ),
       initialRoute: "/",
+      themeMode: ThemeMode.light,
       onGenerateRoute: (settings) {
         final settingsUri = Uri.parse(settings.name!);
         final questionNumber = settingsUri.pathSegments.last;
@@ -183,8 +185,7 @@ class _InstructorSelectionScreenState extends State<InstructorSelectionScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title:
-              Text(pages[_selectedPage]),
+          title: Text(pages[_selectedPage]),
           centerTitle: true,
           leading: Builder(
             builder: (context) {
@@ -198,8 +199,6 @@ class _InstructorSelectionScreenState extends State<InstructorSelectionScreen> {
           ),
         ),
         drawer: Drawer(
-
-
           child: ListView(
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
@@ -213,8 +212,7 @@ class _InstructorSelectionScreenState extends State<InstructorSelectionScreen> {
                     style: TextStyle(
                       fontFamily: "Zarids",
                       fontSize: 35,
-                      color:
-                      Theme.of(context).colorScheme.onSecondaryContainer,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -223,8 +221,7 @@ class _InstructorSelectionScreenState extends State<InstructorSelectionScreen> {
                     style: TextStyle(
                       fontFamily: "Zarids",
                       fontSize: 25,
-                      color:
-                      Theme.of(context).colorScheme.onSecondaryContainer,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                     ),
                   ),
                 ])),
@@ -251,7 +248,6 @@ class _InstructorSelectionScreenState extends State<InstructorSelectionScreen> {
                 onTap: () {
                   setState(() {
                     _selectedPage = 1;
-
                   });
                   Navigator.pop(context);
                 },
@@ -298,8 +294,8 @@ class _InstructorSelectionScreenState extends State<InstructorSelectionScreen> {
                           itemBuilder: (context, index) {
                             return ListTile(
                               title: Text(instructors[index].name,
-                                  style: const TextStyle(fontFamily: "Zarids",
-                                    fontSize: 25)),
+                                  style: const TextStyle(
+                                      fontFamily: "Zarids", fontSize: 25)),
                               trailing: const Icon(Icons.arrow_forward_ios),
                               onTap: () {
                                 Navigator.push(
@@ -320,7 +316,7 @@ class _InstructorSelectionScreenState extends State<InstructorSelectionScreen> {
                   )
                 : _selectedPage == 1
                     ? ListView(
-                        children: [],
+                        children: const [],
                       )
                     : ListView(
                         children: [
@@ -370,12 +366,11 @@ class MainTitleSelectionScreen extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(10),
                 child: Card.outlined(
-
                   surfaceTintColor: Theme.of(context).colorScheme.primaryFixed,
                   color: Theme.of(context)
                       .colorScheme
                       .surfaceContainerHighest
-                      .withOpacity(0.5),
+                      .withValues(alpha: 0.5),
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: InkWell(
@@ -383,12 +378,11 @@ class MainTitleSelectionScreen extends StatelessWidget {
                     splashFactory: InkRipple.splashFactory,
                     child: Center(
                         child: Text(instructor.mainTitles[index].title,
-                          style: TextStyle(
-                              color:
-                              Theme.of(context).colorScheme.primary,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Zarids"))),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Zarids"))),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -447,7 +441,7 @@ class SubTitleSelectionScreen extends StatelessWidget {
                   color: Theme.of(context)
                       .colorScheme
                       .surfaceContainerHighest
-                      .withOpacity(0.5),
+                      .withValues(alpha: 0.5),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: InkWell(
@@ -455,8 +449,7 @@ class SubTitleSelectionScreen extends StatelessWidget {
                     child: Center(
                         child: Text(mainTitle.subTitles[index].title,
                             style: TextStyle(
-                                color:
-                                Theme.of(context).colorScheme.primary,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Zarids"))),
@@ -545,25 +538,25 @@ class QuestionSelectionScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     question.subTitle,
                                     style: TextStyle(
                                         fontFamily: "Zarids",
-                                        color: Theme.of(context).colorScheme.primary,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   IconButton(
                                     // if the question is bookmarked, show the bookmarked icon if not show the normal icon
-                                    icon:
-                                    false
+                                    icon: false
                                         ? const Icon(Icons.bookmark)
                                         : const Icon(Icons.bookmark_border),
-                                    onPressed: () {
-
-                                    },
+                                    onPressed: () {},
                                   )
                                 ],
                               ),
@@ -571,7 +564,8 @@ class QuestionSelectionScreen extends StatelessWidget {
                                 question.question,
                                 style: TextStyle(
                                     fontFamily: "Zarids",
-                                    color: Theme.of(context).colorScheme.onSurface,
+                                    color:
+                                        Theme.of(context).colorScheme.onSurface,
                                     fontSize: 28,
                                     fontWeight: FontWeight.w400),
                               ),
@@ -661,7 +655,7 @@ class QuestionDetailScreen extends StatelessWidget {
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children:  [
+              children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -670,25 +664,25 @@ class QuestionDetailScreen extends StatelessWidget {
                         child: RichText(
                           text: TextSpan(children: [
                             TextSpan(
-                                text: "${question.mainTitle!} / ",
+                                text: "${question.mainTitle} / ",
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall!
                                     .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .primary)),
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary)),
                             TextSpan(
                                 text: question.subTitle,
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall!
                                     .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .secondary)),
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary)),
                           ]),
                         )),
                   ],
@@ -698,16 +692,16 @@ class QuestionDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text(question.question!.trim(),
+                    child: Text(question.question.trim(),
                         textAlign: TextAlign.right,
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium!
                             .copyWith(
-                            fontFamily: "Zarids",
-                            fontSize: 35,
-                            fontWeight: FontWeight.w300,
-                            height: 1.2)),
+                                fontFamily: "Zarids",
+                                fontSize: 35,
+                                fontWeight: FontWeight.w300,
+                                height: 1.2)),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -721,18 +715,15 @@ class QuestionDetailScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondaryContainer,
+                      color: Theme.of(context).colorScheme.secondaryContainer,
                       child: Center(
                         child: Text("نص الجواب",
                             style: TextStyle(
                                 fontSize: 20,
                                 fontFamily: "Zarids",
                                 fontWeight: FontWeight.w600,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondary)),
+                                color:
+                                    Theme.of(context).colorScheme.secondary)),
                       ),
                     )),
                 Expanded(
@@ -744,15 +735,11 @@ class QuestionDetailScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
-                          child: Text(
-                                question.answer ??
-                                    "لا يوجد نص جواب",
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                    fontFamily: "Zarids",
-                                    fontWeight: FontWeight.w400
-                                   )),
-
+                          child: Text(question.answer ?? "لا يوجد نص جواب",
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                  fontFamily: "Zarids",
+                                  fontWeight: FontWeight.w400)),
                         ),
                       ),
                     ),
